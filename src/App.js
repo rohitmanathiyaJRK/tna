@@ -134,7 +134,7 @@ function App() {
           <div className='features-card'>
             {
               course.map((data,ind)=>{
-                return <Card text={data.course_name} img={data.imgurl} />
+                return <Card text={data.course_name} img={data.imgurl} linkURL={data.linkURL} />
               })
             }
           {/* <Card/>
