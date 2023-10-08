@@ -11,6 +11,10 @@ import offer from './images/offer.svg'
 import whatsapp from './images/whatsapp.png'
 import Card from './Components/Card/Card';
 import starImg from './images/starImg.svg';
+import cardImg from './images/cardimg.svg';
+import course2 from './images/course2.svg';
+import course3 from './images/course3.svg';
+import course4 from './images/course4.svg';
 import './App.css'
 import underline from './images/arrow.svg'
 import asset4 from './images/asset4.svg'
@@ -22,12 +26,36 @@ function App() {
     setActive( e.target.name);
     console.log(e.target.name);
   }
+  const [course,setCourse]=useState([
+    {
+      course_name:"NEET Repeater’s 1 year long term intensive class room courses",
+      imgurl:cardImg,
+      linkURL:"https://docs.google.com/forms/d/e/1FAIpQLSeJH9iMK_9sqMCCbKZ_zUt_vu2n4zh8r-F3bsaNBozxQ2TQPw/viewform?usp=sf_link"
+    },
+    {
+      course_name:"NEET Oriented Weekend classes for classes 11th & 12th",
+      imgurl:course2,
+      linkURL:"https://docs.google.com/forms/d/e/1FAIpQLSeJH9iMK_9sqMCCbKZ_zUt_vu2n4zh8r-F3bsaNBozxQ2TQPw/viewform?usp=sf_link"
+
+    },
+    {
+      course_name:"Foundation Classes for class 6th to 10th to face competitive Exams",
+      imgurl:course3,
+      linkURL:"https://docs.google.com/forms/d/1EG9WdGp7zeBX1gVK1xjWwp4BXJ6lYPG_SmfqehOTQag/edit"
+    },
+    {
+      course_name:"School Integrated programme NEET oriented classes for +1 & +2 Foundations",
+      imgurl:course4,
+      linkURL:"https://docs.google.com/forms/d/e/1FAIpQLSeJH9iMK_9sqMCCbKZ_zUt_vu2n4zh8r-F3bsaNBozxQ2TQPw/viewform?usp=sf_link"
+
+    }
+  ]);
 
 
   return (
     <div className='mainContainer'>
       <div className='whatapp'>
-        <a href="https://wa.me/917683029379" target='_blank'><img src={whatsapp} alt="" /></a>
+        <a href="https://wa.me/919363044994" target='_blank'><img src={whatsapp} alt="" /></a>
       </div>
       <header className='header'>
         <div className='logo'>
@@ -46,7 +74,7 @@ function App() {
 
         </div>
         <div className='callus'>
-          <button> <img src={ionCall} alt="" /> <span>Call Us</span></button>
+          <button> <img src={ionCall} alt="" /> <span> 9363044994</span></button>
         </div>
 
       </header>
@@ -57,7 +85,7 @@ function App() {
               <p className='about-text1'><span>Tamil Nadu NEET Academy</span> is the place where your impossible becomes possible. We'll help you break through your limits and achieve your wildest dreams.</p>
               <p className='about-text2'>Start learning by registering for free
               </p>
-              <button>Enroll For Free</button>
+              <button><a href="https://docs.google.com/forms/d/e/1FAIpQLSeJH9iMK_9sqMCCbKZ_zUt_vu2n4zh8r-F3bsaNBozxQ2TQPw/viewform?usp=sf_link" className='universal_btn' target="_blank">Enroll For Free</a></button>
             </div>
           
           <div className='about-img' >
@@ -67,21 +95,21 @@ function App() {
 
 
       </section>
-      <section id='offers' className='offer-section'>
+      <section id='offer' className='offer-section'>
         
         <div className='offer-mainContainer' style={{backgroundImage:`url(${asset3})`}}>
           <div className='offer-text1'>
             <p>1000+ Students enrolled</p>
           </div>
           <div className='offer-text2'>
-            <p>Limited seats only so <button>Book Your seats</button> Now</p>
+            <p>Limited seats only so <button><a href="https://docs.google.com/forms/d/e/1FAIpQLSeJH9iMK_9sqMCCbKZ_zUt_vu2n4zh8r-F3bsaNBozxQ2TQPw/viewform?usp=sf_link" className='universal_btn' target="_blank">Book Your Seats</a></button> Now</p>
 
           </div>
         </div>
         
 
       </section>
-      <section id='course' className='course-section'>
+      <section id='offers' className='course-section'>
         <div className='course-mainContainer'>
           <div className='course-first'>
             <img src={offer} alt="" />
@@ -97,17 +125,22 @@ function App() {
         </div>
 
       </section>
-      <section id='features'>
+      <section id='course'>
         <div className='features-mainContainer'>
           <div className='features-text'>
             <p> <span>Admissions</span> Open For</p>
             <img src={underline} alt="" />
           </div>
           <div className='features-card'>
+            {
+              course.map((data,ind)=>{
+                return <Card text={data.course_name} img={data.imgurl} />
+              })
+            }
+          {/* <Card/>
           <Card/>
           <Card/>
-          <Card/>
-          <Card/>
+          <Card/> */}
 
           </div>
           
@@ -115,7 +148,7 @@ function App() {
         
 
       </section>
-      <section id='feat'>
+      <section id='features'>
         <div className='feat-mainContainer'>
           <div className='feat-text'>
             <div className='feat-text-1'>
@@ -125,7 +158,11 @@ function App() {
 
                 <div className='feat-bullet-points-div'>
                   <img src={starImg} alt="" />
-                  <p>Limited Batch Size</p>
+                  <p>Experienced Faculties</p>
+                </div>
+                <div className='feat-bullet-points-div'>
+                  <img src={starImg} alt="" />
+                  <p>Individual Attention</p>
                 </div>
                 <div className='feat-bullet-points-div'>
                   <img src={starImg} alt="" />
@@ -133,28 +170,24 @@ function App() {
                 </div>
                 <div className='feat-bullet-points-div'>
                   <img src={starImg} alt="" />
-                  <p>Limited Batch Size</p>
+                  <p>Doubt Clearing Session</p>
                 </div>
                 <div className='feat-bullet-points-div'>
+                  <img src={starImg} alt="" />
+                  <p>Weekend test Session</p>
+                </div>
+                <div className='feat-bullet-points-div'>
+                  <img src={starImg} alt="" />
+                  <p>Easy Installment Option</p>
+                </div>
+                {/* <div className='feat-bullet-points-div'>
                   <img src={starImg} alt="" />
                   <p>Limited Batch Size</p>
                 </div>
                 <div className='feat-bullet-points-div'>
                   <img src={starImg} alt="" />
                   <p>Limited Batch Size</p>
-                </div>
-                <div className='feat-bullet-points-div'>
-                  <img src={starImg} alt="" />
-                  <p>Limited Batch Size</p>
-                </div>
-                <div className='feat-bullet-points-div'>
-                  <img src={starImg} alt="" />
-                  <p>Limited Batch Size</p>
-                </div>
-                <div className='feat-bullet-points-div'>
-                  <img src={starImg} alt="" />
-                  <p>Limited Batch Size</p>
-                </div>
+                </div> */}
               </div>
             </div>
             <div>

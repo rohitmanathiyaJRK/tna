@@ -42,3 +42,9 @@
     color: white;
     background-color: rgb(255, 194, 122);
 }
+
+.universal_btn{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}

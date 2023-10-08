@@ -7,6 +7,13 @@
     align-items: center;
 
 }
+
+.universal_btn{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
 .logo{
     height: 60px;
     width: 60px;
@@ -239,7 +246,7 @@
     
 
     
-    background-color: rgb(244, 248, 223);
+    background-color:  rgb(255, 250, 245);
     margin-top: 100px;
 
     
