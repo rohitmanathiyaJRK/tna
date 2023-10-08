@@ -22,10 +22,94 @@ import asset4 from './images/asset4.svg'
 
 function App() {
   const [active,setActive]=useState("");
+  const [userContact,setUserContact]=useState({})
+  const [username,setUsername]=useState("");
+  const [number,setNumber]=useState("");
+  const [location,setLocation]=useState("");
+  const [email,setEmail]=useState("");
+  const [footermail,setFootermail]=useState("");
   const handleactive=(e)=>{
     setActive( e.target.name);
     console.log(e.target.name);
   }
+  const handleChange=(e)=>{
+    if(e.target.name=== "username"){
+        setUsername(e.target.value);
+    }
+    else if(e.target.name === "number"){
+      setNumber(e.target.value);
+    }
+    else if(e.target.name === "location"){
+      setLocation(e.target.value);
+    }
+    else if(e.target.name=== "email"){
+      setEmail(e.target.value);
+    }
+    else if(e.target.name === 'footermail'){
+      setFootermail(e.target.value);
+    }
+  }
+  const handleSubmit=(e)=>{
+    console.log("username",username);
+    console.log("number",number);
+    console.log('location',location);
+    console.log("email",email);
+
+    e.preventDefault();
+    if(username!=="" && email!=="" && location !=="" && number !==""){
+      setUserContact({
+        Username:username,
+        Number:number,
+        Location:location,
+        Email:email
+      })
+      const config={
+        // Username:"admin@tamilnaduneetacademy.com", 
+        // Password:"8410603685BD5898C791B4DCC0B65E4E2EC5",
+        // Host:"smtp.elasticemail.com",
+        // Port:2525,
+        SecureToken:'6c2a54da-2efd-4577-9e9c-ab93190d1c52',
+        To : 'admin@tamilnaduneetacademy.com',
+        From : 'admin@tamilnaduneetacademy.com',
+        Subject : "User Enquiry from website",
+        Body : `Hi, You have new enquiry from ${username}, Plese contact user on this number ${number}. The user is from ${location}. User mail id is ${email}`
+      }
+      console.log("window.Email checking -----",window.Email);
+      if(window.Email){
+        window.Email.send(config).then(msg=>alert(msg));
+        
+      }
+      setUsername("");
+      setNumber("");
+      setEmail("");
+      setLocation("");
+    }
+    else{
+      alert("please enter every field ")
+    }
+  }
+
+  const handleClick=()=>{
+    if(footermail!=""){
+      const config={
+        // Username:"admin@tamilnaduneetacademy.com", 
+        // Password:"8410603685BD5898C791B4DCC0B65E4E2EC5",
+        // Host:"smtp.elasticemail.com",
+        // Port:2525,
+        SecureToken:'6c2a54da-2efd-4577-9e9c-ab93190d1c52',
+        To : 'admin@tamilnaduneetacademy.com',
+        From : 'admin@tamilnaduneetacademy.com',
+        Subject : "Subscription Alert",
+        Body : `Hi, You have new have new subscription from user with mail id ${footermail}`
+      }
+      console.log("window.Email checking -----",window.Email);
+      if(window.Email){
+        window.Email.send(config).then(msg=>alert(msg));
+        
+      }
+    }
+  }
+
   const [course,setCourse]=useState([
     {
       course_name:"NEET Repeater’s 1 year long term intensive class room courses",
@@ -245,14 +329,16 @@ function App() {
           <div className='cnt-text'>
             <p className='cnt-text-head'><span>Quick</span> Enquiry</p>
             <img src={underline} alt="" />
-            <form className='cnt-form'>
-              <input type="text" name="username" placeholder='Enter your name' />
-              <input type="text" name="number"  placeholder='Enter you mobile number'/>
-              <input type="text" name="location"  placeholder='Enter your Location'/>
-              <div className='cnt-submit'>
+            <form className='cnt-form' onSubmit={handleSubmit}>
+              <input type="text" name="username" value={username} placeholder='Enter your name' onChange={handleChange} />
+              <input type="number" name="number" value={number}  placeholder='Enter you mobile number' onChange={handleChange}/>
+              <input type="text" name="location" value={location}  placeholder='Enter your Location' onChange={handleChange}/>
+              <input type="email" name="email" value={email}  placeholder='Enter your email' onChange={handleChange}/>
+
+              <button className='cnt-submit' style={{cursor:"pointer"}} >
                 <p>SEND</p>
                 <img src={send} alt="" />
-              </div>
+              </button>
               
             </form>
 
@@ -310,8 +396,8 @@ function App() {
           <div>
             <p>Subscribe to know our latest updates from our institution</p>
             <div className='footer-5-input'>
-            <input type="text" name="" id="" placeholder='Email Here' />
-            <button>Subscribe</button>
+            <input type="text" name="footermail" id="" onChange={handleChange} placeholder='Email Here' value={footermail} />
+            <button onClick={handleClick}>Subscribe</button>
 
             </div>
             
